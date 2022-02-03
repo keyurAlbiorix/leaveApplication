@@ -1,0 +1,14 @@
+<h1 class="Leaveheader">Leave Management</h1>
+<button class="addLeaveAction" mat-stroked-button color="warn" (click)="openDialog()">Add Leave</button>
+<div class="leaveRecord" *ngFor="let item of leaveRecord.data">
+    <mat-card class="leave-card-box">
+        <div>
+            <div>startDate : {{item.startDate | date}}</div>
+            <div>reason : {{item.reason}}</div>
+            <div>endDate : {{item.endDate |date}}</div>
+         </div>
+        <div >
+            <mat-icon class="deleteAction" (click)="deleteLeave(item._id)">delete</mat-icon>
+        </div>
+    </mat-card>
+</div>

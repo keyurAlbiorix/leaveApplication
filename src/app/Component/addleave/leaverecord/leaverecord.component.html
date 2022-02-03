@@ -1,0 +1,39 @@
+<form [formGroup]="leaveForm" (ngSubmit)="submit(leaveForm)">
+  <h3 mat-dialog-title>Add Leave</h3>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Start date">
+        <input matEndDate formControlName="endDate"  placeholder="End date" (dateChange)="diffrentiateDate()">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="numberOfLeaveAction" *ngIf="leaveForm.controls['numOfLeave'].value">
+    No Of Leaves
+    {{leaveForm.controls["numOfLeave"].value}}
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Leave type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of leaveTypes" [value]="food.value">
+          {{food.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Reason</mat-label>
+      <input matInput formControlName="reason">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="warn">Close</button>
+    <button type="submit" mat-stroked-button color="warn" cdkFocusInitial>Save</button>
+  </div>
+</form>
